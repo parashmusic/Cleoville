@@ -4,6 +4,7 @@ import prod_1 from '../assets/bs_1.webp';
 import prod_2 from '../assets/bs_2.webp';
 import prod_3 from '../assets/bs_3.webp';
 import prod_4 from '../assets/bs_4.webp';
+import { useState,useEffect } from "react";
 const products = [
   {
     id: 1,
@@ -83,7 +84,9 @@ const products = [
 export function ProductDetailPage() {
   const { id } = useParams(); 
   const product = products.find((p) => p.id === parseInt(id));
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top
+  }, [id]); 
   if (!product) {
     return <div>Product not found</div>;
   }
