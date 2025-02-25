@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Plus, ShoppingBasket } from "lucide-react";
 import j1 from '../assets/jew1.webp';
 import j2 from '../assets/jew2.webp';
@@ -8,7 +8,9 @@ import { Button } from "../components/ui/Button";
 
 export default function BuildHamper() {
   const [selectedProducts, setSelectedProducts] = useState([]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top
+  }, []);
   const products = [
     { id: 1, name: "Crystal Necklace", price: 99, image: j1 },
     { id: 2, name: "Rose Gold Bracelet", price: 79, image: j2 },

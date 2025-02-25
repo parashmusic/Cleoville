@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ImagePlus, Upload } from "lucide-react";
 
 import { Button } from "../components/ui/Button";
@@ -18,6 +18,9 @@ export default function SpotifyKeychain() {
       reader.readAsDataURL(file);
     }
   };
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top
+  }, []);
 
   return (
     <>

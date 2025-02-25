@@ -25,12 +25,12 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full  bg-white">
+    <header className="sticky top-0 z-50 w-full bg-white">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold">
-            CleoCraft
+          <Link to="/" className="text-2xl text-gray-900 font-bold">
+            Cleoville
           </Link>
 
          
@@ -108,7 +108,7 @@ export const Header = () => {
         <AnimatePresence>
           {isSidebarOpen && (
             <motion.div
-              className="fixed inset-0 bg-black/10 backdrop-blur-xs bg-opacity-50 z-50 md:hidden"
+              className="fixed inset-0 bg-black/0 backdrop-blur-xs bg-opacity-50 z-50 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
