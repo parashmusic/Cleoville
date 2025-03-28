@@ -29,22 +29,22 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl text-gray-900 font-bold">
+          <Link to="/"  style={{ fontFamily: "'Bodoni Moda', serif", fontStyle: "italic", fontWeight: 400 }} className="text-3xl bg-gradient-to-r from-fuchsia-300 to-fuchsia-500 bg-clip-text  text-transparent font-bold">
             Cleoville
           </Link>
 
          
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/jewelry" className="hover:text-primary">
+            <Link to="/jewelry" className="hover:text-blue-500">
               Jewelry
             </Link>
-            <Link to="/custom-gifts" className="hover:text-primary">
+            <Link to="/custom-gifts" className="hover:text-blue-500">
               Custom Gifts
             </Link>
-            <Link to="/build-hamper" className="hover:text-primary">
+            <Link to="/build-hamper" className="hover:text-blue-500">
               Build Hamper
             </Link>
-            <Link to="/spotify-keychain" className="hover:text-primary">
+            <Link to="/spotify-keychain" className="hover:text-blue-500">
               Spotify Keychain
             </Link>
           </nav>
@@ -135,16 +135,16 @@ export const Header = () => {
 
                 {/* Navigation Links */}
                 <nav className="mt-12 flex flex-col space-y-4">
-                  <Link to="/jewelry" className="hover:text-primary">
+                  <Link to="/jewelry" className="hover:text-blue-500">
                     Jewelry
                   </Link>
-                  <Link to="/custom-gifts" className="hover:text-primary">
+                  <Link to="/custom-gifts" className="hover:text-blue-500">
                     Custom Gifts
                   </Link>
-                  <Link to="/build-hamper" className="hover:text-primary">
+                  <Link to="/build-hamper" className="hover:text-blue-500">
                     Build Hamper
                   </Link>
-                  <Link to="/spotify-keychain" className="hover:text-primary">
+                  <Link to="/spotify-keychain" className="hover:text-blue-500">
                     Spotify Keychain
                   </Link>
                 </nav>
