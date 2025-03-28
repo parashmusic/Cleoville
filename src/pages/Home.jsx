@@ -8,6 +8,8 @@ import j2 from '../assets/jew2.webp';
 import j3 from '../assets/jew3.webp';
 import j4 from '../assets/jew4.webp';
 import heroImage from '../assets/jew31.jpg';
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 // Animation variants
 const container = {
   hidden: { opacity: 0 },
@@ -33,6 +35,42 @@ const slideUp = {
   hidden: { opacity: 0, y: 50 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1] // Smooth ease curve
+    }
+  }
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut" 
+    }
+  }
+};
+
 
 export default function Home() {
   return (
@@ -122,67 +160,73 @@ export default function Home() {
           </motion.div>
         </div>
       </section> */}
-          <div className="lg:mt-16  md:px-[10vw]">
-      <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 md:grid-rows-1 gap-3 lg:gap-4">
-        
-        {/* IMAGE 1 (mobile: order-1, desktop: order-2) */}
-        <div className="col-span-1 row-span-1 order-1 md:order-2">
-          <img 
-            src={j1}
-            alt="Hero"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        {/* IMAGE 2 (mobile: order-2, desktop: order-3) */}
-        <div className="col-span-1 row-span-1 order-2 md:order-3">
-          <img 
-            src={j1}
-            alt="Hero"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        {/* TEXT (mobile: order-3, desktop: order-1) */}
-        <div className="col-span-2 row-span-1 order-3 md:order-1 bg-[#F8F5EE] px-6 md:px-8 py-16 flex flex-col items-center">
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-thin mb-6 text-gray-900 tracking-tight leading-tight text-center md:text-left"
-            variants={item}
-          >
-            Craft Your <br className="hidden lg:block" />
-            <span className="" >Perfect Gift</span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 font-light leading-relaxed max-w-lg text-center md:text-left"
-            variants={item}
-          >
-            Create personalized gifts, custom hampers, and unique jewelry pieces
-            that tell your story.
-          </motion.p>
-
+      <div className="lg:mt-16 md:px-[10vw]">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 md:grid-rows-1 gap-3 lg:gap-4"
+        >
+          {/* Image 1 */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 w-full md:w-auto justify-center md:justify-start"
-            variants={item}
+            className="col-span-1 row-span-1 order-1 md:order-2"
+            variants={imageVariants}
           >
-            <Button
-              className="bg-gradient-to-r from-gray-800 to-gray-600 text-white hover:from-gray-700 hover:to-gray-500 transition-all duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-900 shadow-lg hover:shadow-xl"
-              size="lg"
-              asChild
-            >
-              <Link to="/custom-gifts">Start Creating</Link>
-            </Button>
-            <Button
-              className="bg-transparent text-gray-900 hover:bg-gray-100 transition-colors duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-300"
-              size="lg"
-              asChild
-            >
-              <Link to="/build-hamper">Build a Hamper</Link>
-            </Button>
+            <img src={j1} alt="Hero" className="w-full h-full object-cover" />
           </motion.div>
-        </div>
+
+          {/* Image 2 */}
+          <motion.div
+            className="col-span-1 row-span-1 order-2 md:order-3"
+            variants={imageVariants}
+          >
+            <img src={j2} alt="Hero" className="w-full h-full object-cover" />
+          </motion.div>
+
+          {/* Text Content */}
+          <motion.div
+            className="col-span-2 row-span-1 order-3 md:order-1 bg-[#F8F5EE] px-6 md:px-8 py-16 flex flex-col"
+            variants={itemVariants}
+          >
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-thin mb-6 text-gray-900 tracking-tight leading-tight text-center md:text-left"
+              variants={itemVariants}
+            >
+              Craft Your <br className="hidden lg:block" />
+              <span className="">Perfect Gift</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 font-light leading-relaxed max-w-lg text-center md:text-left"
+              variants={itemVariants}
+            >
+              Create personalized gifts, custom hampers, and unique jewelry
+              pieces that tell your story.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 w-full md:w-auto justify-center md:justify-start"
+              variants={itemVariants}
+            >
+              <Button
+                className="bg-gradient-to-r from-gray-600 to-gray-600 text-white hover:from-gray-700 hover:to-gray-500 transition-all duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-900 shadow-lg hover:shadow-xl"
+                size="lg"
+                asChild
+              >
+                <Link to="/custom-gifts">Start Creating</Link>
+              </Button>
+              <Button
+                className="bg-[#9a6e4e85] text-white hover:bg-gray-100 transition-colors duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-300"
+                size="lg"
+                asChild
+              >
+                <Link to="/build-hamper">Build a Hamper</Link>
+              </Button>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
 
       <motion.section
         className="py-24"

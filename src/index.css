@@ -8,7 +8,7 @@ body {
 }
 
 @theme {
-  --color-primary: fuchsia;
+  --color-primary: #E1AD99;
   
   --color-secondary: fuchsia;       /* A purple shade */
   --color-accent: #F6CADC;          /* A rose/red shade */

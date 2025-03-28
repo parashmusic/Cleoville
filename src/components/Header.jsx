@@ -23,28 +23,28 @@ export const Header = () => {
     console.log('Search Query:', searchQuery);
     alert(`You searched for: ${searchQuery}`);
   };
-
+  
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/"  style={{ fontFamily: "'Bodoni Moda', serif", fontStyle: "italic", fontWeight: 400 }} className="text-3xl bg-gradient-to-r from-fuchsia-300 to-fuchsia-500 bg-clip-text  text-transparent font-bold">
+          <Link to="/"  style={{ fontFamily: "'Bodoni Moda', serif", fontStyle: "italic", fontWeight: 400 }} className="text-3xl bg-gradient-to-r from-fuchsia-300 to-[#E1AD99] bg-clip-text  text-transparent font-bold">
             Cleoville
           </Link>
 
          
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/jewelry" className="hover:text-blue-500">
-              Jewelry
+          <nav className="hidden md:flex text-gray-700 items-center space-x-8">
+            <Link to="/" className="hover:text-primary">
+             Home
             </Link>
-            <Link to="/custom-gifts" className="hover:text-blue-500">
-              Custom Gifts
+            <Link to="/products" className="hover:text-primary">
+              Collections
             </Link>
-            <Link to="/build-hamper" className="hover:text-blue-500">
+            <Link to="/build-hamper" className="hover:text-primary">
               Build Hamper
             </Link>
-            <Link to="/spotify-keychain" className="hover:text-blue-500">
+            <Link to="/spotify-keychain" className="hover:text-primary">
               Spotify Keychain
             </Link>
           </nav>
