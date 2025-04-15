@@ -135,16 +135,16 @@ export const Header = () => {
 
                 {/* Navigation Links */}
                 <nav className="mt-12 flex flex-col space-y-4">
-                  <Link to="/jewelry" className="hover:text-blue-500">
+                  <Link to="/jewelry" onClick={toggleSidebar} className="hover:text-blue-500">
                     Jewelry
                   </Link>
-                  <Link to="/custom-gifts" className="hover:text-blue-500">
+                  <Link to="/custom-gifts" onClick={toggleSidebar}  className="hover:text-blue-500">
                     Custom Gifts
                   </Link>
-                  <Link to="/build-hamper" className="hover:text-blue-500">
+                  <Link to="/build-hamper" onClick={toggleSidebar}  className="hover:text-blue-500">
                     Build Hamper
                   </Link>
-                  <Link to="/spotify-keychain" className="hover:text-blue-500">
+                  <Link to="/spotify-keychain" onClick={toggleSidebar}  className="hover:text-blue-500">
                     Spotify Keychain
                   </Link>
                 </nav>
