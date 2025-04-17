@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { ArrowLeft, ShoppingCart, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useParams } from 'react-router-dom';
 import { useCart } from "../context/CartContext";
-
+import { Link } from "react-router-dom";
 
 const ProductPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { addToCart, isCartOpen, setIsCartOpen } = useCart();
- 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top
+  }, []); 
   const [selectedVariant, setSelectedVariant] = useState(null);
   const product = {
     id: 1,
@@ -42,6 +44,7 @@ const ProductPage = () => {
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
       {/* Back Button */}
+      <Link to='/ourcollection'>
       <motion.button
         whileHover={{ x: -3 }}
         className="flex items-center text-[#E1AD99] mb-8 font-light"
@@ -49,6 +52,8 @@ const ProductPage = () => {
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Shop
       </motion.button>
+      </Link>
+     
 
       <div className="grid md:grid-cols-2 gap-12">
         {/* Image Gallery */}

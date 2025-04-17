@@ -81,15 +81,15 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-gray-600">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                hello@giftcraft.com
+                care@Cleoville.store
               </li>
               <li className="flex items-start gap-2 text-gray-600">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                +1 234 567 890
+                +91 9954781961
               </li>
               <li className="flex items-start gap-2 text-gray-600">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                123 Gift Street, Creative City
+                SMCH, Silchar, Assam, 788014
               </li>
             </ul>
           </div>
@@ -126,7 +126,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} GiftCraft. All rights reserved.
+            © {new Date().getFullYear()} Cleoville. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link to="/privacy" className="text-xs text-gray-500 hover:text-gray-700 transition-colors">

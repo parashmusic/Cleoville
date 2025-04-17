@@ -292,7 +292,7 @@ export default function Home() {
           {/* Text Content */}
           <div
             ref={heroTextRef}
-            className="col-span-2 row-span-1 order-3 md:order-1 bg-[#F8F5EE] px-6 md:px-8 py-16 flex flex-col"
+            className="col-span-2 row-span-1 order-3 md:order-1 bg-[#F8F5EE] px-6 md:px-8 lg:py-16 py-16 flex flex-col"
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-thin mb-6 text-gray-900 tracking-tight leading-tight text-center md:text-left">
               Craft Your <br className="hidden lg:block" />
@@ -304,18 +304,18 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto justify-center md:justify-start">
               <Button
-                className="bg-gradient-to-r from-gray-600 to-gray-600 text-white hover:from-gray-700 hover:to-gray-500 transition-all duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-900 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-gray-700 to-gray-600 text-white hover:from-gray-700 hover:to-gray-500 transition-all duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center  shadow-lg hover:shadow-xl"
                 size="lg"
                 asChild
               >
-                <Link to="/custom-gifts">Start Creating</Link>
+                <Link to="/ourcollection">Our Collection</Link>
               </Button>
               <Button
-                className="bg-[#9a6e4e85] text-white hover:bg-gray-100 transition-colors duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-300"
+                className="bg-[#9a6e4e85] text-white hover:bg-[#9a6e4ea6] transition-colors duration-300 rounded-sm px-8 py-4 text-base md:text-lg font-light text-center border border-gray-300"
                 size="lg"
                 asChild
               >
-                <Link to="/build-hamper">Build a Hamper</Link>
+                <Link to="/build-hamper">Build Your Gift</Link>
               </Button>
             </div>
           </div>
@@ -442,7 +442,7 @@ export default function Home() {
         ABOUT SECTION
         ---------------------------
       */}
-      <section ref={aboutSectionRef} className="py-24">
+      <section ref={aboutSectionRef} className="py-24 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div ref={aboutImageRef} className="md:w-1/2 max-w-[500px]">

@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/jewelry" element={<Jewelry />} />
           <Route path="/build-hamper" element={<BuildHamper/>} />
           <Route path="/spotify-keychain" element={<SpotifyKeychain/>} />
-          <Route path="/custom-gifts" element={<ProductGrid />} />
+          <Route path="/ourcollection" element={<ProductGrid />} />
           {/* Add more routes as needed */}
           
           <Route 
