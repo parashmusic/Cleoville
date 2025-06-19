@@ -126,7 +126,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} Cleoville. All rights reserved.
+            © {new Date().getFullYear()} Cleoville. All rights reserved @2025.
           </p>
           <div className="flex gap-6">
             <Link to="/privacy" className="text-xs text-gray-500 hover:text-gray-700 transition-colors">
