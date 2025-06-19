@@ -4,11 +4,14 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { CartProvider } from './context/CartContext.jsx'
+import { ShopProvider } from './context/ShopContext.jsx'
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-  <CartProvider>
-    <App />
-    </CartProvider>
-  </BrowserRouter>,
-)
+    <ShopProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </ShopProvider>
+  </BrowserRouter>
+);

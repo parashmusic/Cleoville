@@ -1,27 +1,28 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Heart, Search, Filter } from "lucide-react";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
+import { useShop } from "../context/ShopContext";
+import { useCart } from "../context/CartContext";
 
 const ProductGrid = () => {
-  const products = [
-    { id: 1, name: "Handcrafted Pearl Necklace", price: 89.99, category: "Jewelry", image: "https://salty.co.in/cdn/shop/files/Salty-5173763.jpg?v=1742216604&width=1080" },
-    { id: 2, name: "Personalized Soy Candle", price: 34.50, category: "Home", image: "https://salty.co.in/cdn/shop/files/EN24152-G-RED_2.jpg?v=1728408497&width=1080" },
-    { id: 3, name: "Custom Engraved Bracelet", price: 65.00, category: "Jewelry", image: "https://salty.co.in/cdn/shop/files/NS14426-G.jpg?v=1738920070&width=1080" },
-    { id: 4, name: "Artisanal Tea Set", price: 120.00, category: "Home", image: "https://salty.co.in/cdn/shop/products/Hyacinth4-pcsZirconHeartMagneticCloverNecklace-Silver.jpg?v=1709709060&width=1080" },
-  ];
-
+  const { 
+    products, 
+    isLoading, 
+    error, 
+    categories,
+    filterProducts,
+    addToWishlist,
+    isInWishlist
+  } = useShop();
+  
+  const { addToCart } = useCart();
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
 
-  const categories = ["All", ...new Set(products.map(product => product.category))];
-
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredProducts = filterProducts(searchTerm, selectedCategory);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,9 +40,14 @@ const ProductGrid = () => {
       transition: { duration: 0.5 }
     }
   };
+
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top
-  }, []); 
+    window.scrollTo(0, 0);
+  }, []);
+
+if (isLoading) return <div className="container mx-auto px-4 py-12 text-center">Loading products...</div>;
+if (error) return <div className="container mx-auto px-4 py-12 text-center text-red-500">Error: {error}</div>;
+if (!Array.isArray(products)) return <div className="container mx-auto px-4 py-12 text-center">No products available</div>;
   return (
     <div className="container mx-auto px-4 lg:py-12 py-10">
       {/* Header */}
@@ -51,7 +57,7 @@ const ProductGrid = () => {
         className="mb-12 text-center"
       >
         <h1 className="text-4xl font-normal tracking-widest text-rose-300 mb-4">Our Collection</h1>
-        <p className="text-[#E1AD99] font-light">Thoughtfully crafted gifts for every occasion</p>
+        <p className="text-[#E1AD99] font-light">Thoughtfully crafted products for every occasion</p>
       </motion.div>
 
       {/* Search and Filter */}
@@ -111,41 +117,54 @@ const ProductGrid = () => {
         >
           {filteredProducts.map((product) => (
             <motion.div 
-              key={product.id}
+              key={product._id}
               variants={itemVariants}
               whileHover={{ y: -5 }}
               className="group relative"
             >
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/products/${product._id}`}>
                 <div className="aspect-square bg-[#F8F5EE] overflow-hidden rounded-lg mb-3">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {product.image?.length > 0 ? (
+                    <img
+                      src={product.image[0]}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      No Image
+                    </div>
+                  )}
                 </div>
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-light text-gray-900">{product.name}</h3>
-                    <p className="text-[#E1AD99] font-medium">${product.price.toFixed(2)}</p>
+                    <p className="text-[#E1AD99] font-medium">₹{product.price.toFixed(2)}</p>
+                    {/* {product.bestseller && (
+                      <span className="text-xs bg-rose-100 text-rose-800 px-2 py-1 rounded">
+                        Bestseller
+                      </span>
+                    )} */}
                   </div>
                   <button 
                     className="p-2 text-gray-400 hover:text-[#E1AD99] transition-colors"
                     onClick={(e) => {
                       e.preventDefault();
-                      // Add to wishlist
+                      addToWishlist(product);
                     }}
                   >
-                    <Heart className="w-5 h-5" />
+                    <Heart 
+                      className="w-5 h-5" 
+                      fill={isInWishlist(product._id) ? "#E1AD99" : "none"} 
+                      stroke={isInWishlist(product._id) ? "#E1AD99" : "currentColor"}
+                    />
                   </button>
                 </div>
               </Link>
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 className="w-full mt-3 py-2 lg:block hidden bg-[#E1AD99] text-white font-light rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                onClick={() => {
-                  // Add to cart logic
-                }}
+                onClick={() => addToCart(product)}
               >
                 Add to Cart
               </motion.button>
