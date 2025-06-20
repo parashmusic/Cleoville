@@ -15,7 +15,8 @@ export function ShopProvider({ children }) {
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
-      const baseUrl = import.meta.env.VITE_BACKEND_URL_LIVE || 'http://localhost:4000';
+      const baseUrl = import.meta.env.VITE_BACKEND_URL_LIVE || import.meta.env.VITE_BACKEND_URL;
+      console.log(baseUrl)
       const response = await fetch(`${baseUrl}/api/product/list`);
       if (!response.ok) {
         throw new Error('Failed to fetch products');
